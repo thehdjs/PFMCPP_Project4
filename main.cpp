@@ -42,7 +42,108 @@ send me a DM to check your pull request
  */
 
 #include <iostream>
+
+struct FloatType
+{
+    float add(float lhs, float rhs)
+    {
+        return lhs + rhs;
+    }
+
+    float subtract(float lhs, float rhs)
+    {
+        return lhs - rhs;
+    }
+
+    float multiply(float lhs, float rhs)
+    {
+        return lhs * rhs;
+    }
+
+    float divide(float lhs, float rhs)
+    {
+        if(rhs == 0.f) // gave me warning when writing 0 without .f saif it was unsafe to use == or =! with floats. Don't see how 0.f makes it better
+        std::cout << "Attention: Dividing floats by 0!" << "\n";
+        return lhs / rhs;
+    }
+};
+
+struct DoubleType
+{
+    double add(double lhs, double rhs)
+    {
+        return lhs + rhs;
+    }
+
+    double subtract(double lhs, double rhs)
+    {
+        return lhs - rhs;
+    }
+
+    double multiply(double lhs, double rhs)
+    {
+        return lhs * rhs;
+    }
+
+    double divide(double lhs, double rhs)
+    {
+        return lhs / rhs;
+    }
+};
+
+struct IntType
+{
+    int add(int lhs, int rhs)
+    {
+        return lhs + rhs;
+    }
+
+    int subtract(int lhs, int rhs)
+    {
+        return lhs - rhs;
+    }
+
+    int multiply(int lhs, int rhs)
+    {
+        return lhs * rhs;
+    }
+
+    int divide(int lhs, int rhs)
+    {
+        if(rhs == 0) 
+        {
+            std::cout << "ERROR: Dividing ints by 0!" << "\n";
+            return 0;
+        }
+        else return lhs / rhs;
+    }
+};
+
 int main()
 {
+    FloatType floaty;
+    auto result = floaty.divide(5.6f, 0);
+    std::cout << "result of floaty.divide(): " << result << "\n";
+
+    FloatType floater;
+    result = floater.subtract(77.5648f, 10000);
+    std::cout << "result of floater.substract(): " << result << "\n";
+
+    DoubleType doubly;
+    result = doubly.add(48956.684364684, 365345347.68463648);
+    std::cout << "result of doubly.add(): " << result << "\n";
+
+    DoubleType doubler;
+    result = doubler.multiply(384345346346841.686846434, 3484239339439.64536836);
+    std::cout << "result of doubler.multiply(): " << result << "\n";
+
+    IntType inty;
+    result = inty.divide(5, 0);
+    std::cout << "result of inty.divide(): " << result << "\n";
+    
+    IntType inter;
+    result = inter.add(756, 566);
+    std::cout << "result of inter.add(): " << result << "\n";
+    
     std::cout << "good to go!" << std::endl;
 }
