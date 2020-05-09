@@ -62,8 +62,7 @@ struct FloatType
 
     float divide(float lhs, float rhs)
     {
-        if(rhs == 0.f) // gave me warning when writing 0 without .f saif it was unsafe to use == or =! with floats. Don't see how 0.f makes it better
-        std::cout << "Attention: Dividing floats by 0!" << "\n";
+        if(rhs == 0.f) std::cout << "Attention: Dividing floats by 0!" << "\n";
         return lhs / rhs;
     }
 };
@@ -87,6 +86,7 @@ struct DoubleType
 
     double divide(double lhs, double rhs)
     {
+        if(rhs == 0.0) std::cout << "Attention: Dividing doubles by 0!" << "\n";
         return lhs / rhs;
     }
 };
@@ -130,20 +130,24 @@ int main()
     std::cout << "result of floater.substract(): " << result << "\n";
 
     DoubleType doubly;
-    result = doubly.add(48956.684364684, 365345347.68463648);
-    std::cout << "result of doubly.add(): " << result << "\n";
+    auto result1 = doubly.add(48956.684364684, 365345347.68463648);
+    std::cout << "result of doubly.add(): " << result1 << "\n";
 
     DoubleType doubler;
-    result = doubler.multiply(384345346346841.686846434, 3484239339439.64536836);
-    std::cout << "result of doubler.multiply(): " << result << "\n";
+    result1 = doubler.multiply(384345346346841.686846434, 3484239339439.64536836);
+    std::cout << "result of doubler.multiply(): " << result1 << "\n";
+    
+    DoubleType doublerer;
+    result1 = doublerer.divide(384345346346841.686846434, 0.0);
+    std::cout << "result of doublerer.divide(): " << result1 << "\n";
 
     IntType inty;
-    result = inty.divide(5, 0);
-    std::cout << "result of inty.divide(): " << result << "\n";
+    auto result2 = inty.divide(5, 0);
+    std::cout << "result of inty.divide(): " << result2 << "\n";
     
     IntType inter;
-    result = inter.add(756, 566);
-    std::cout << "result of inter.add(): " << result << "\n";
+    result2 = inter.add(756, 566);
+    std::cout << "result of inter.add(): " << result2 << "\n";
     
     std::cout << "good to go!" << std::endl;
 }
