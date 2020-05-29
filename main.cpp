@@ -13,7 +13,17 @@ New/This/Pointers/References conclusion
      on the lines below it, write a struct named 'HeapA' that correctly shows how to own an instance of 'A' 
          on the heap without leaking, without using smart pointers. 
  */
+struct A {};
 
+struct HeapA
+{
+    HeapA(A* a) : ptrToaA(a) {}
+    ~HeapA()
+    {
+        delete ptrToaA;
+    }
+    A* ptrToaA = nullptr;
+};
 
 
 
@@ -63,7 +73,7 @@ New/This/Pointers/References conclusion
 int main()
 {   
     //testing instruction 0
-    HeapA heapA; 
+    HeapA heapA(new A() ); 
 
     //assign heap primitives
     FloatType ft ( 2.0f );
