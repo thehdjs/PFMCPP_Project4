@@ -135,26 +135,31 @@ struct FloatType
     
     float* value = nullptr;
 
-    float add(float lhs, float rhs)
+    FloatType& add(float rhs)
     {
-        return lhs + rhs;
+        *value += rhs;
+        return *this;
     }
 
-    float subtract(float lhs, float rhs)
+    FloatType& subtract(float rhs)
     {
-        return lhs - rhs;
+        *value -= rhs;
+        return *this;
     }
 
-    float multiply(float lhs, float rhs)
+    FloatType& multiply(float rhs)
     {
-        return lhs * rhs;
+        *value *= rhs;
+        return *this;
     }
 
-    float divide(float lhs, float rhs)
+    FloatType& divide(float rhs)
     {
         if(rhs == 0.f) 
             std::cout << "Attention: Dividing floats by 0!" << "\n";
-        return lhs / rhs;
+    
+        *value /= rhs;
+        return *this;
     }
 };
 
@@ -168,26 +173,31 @@ struct DoubleType
 
     double* value = nullptr;
 
-    double add(double lhs, double rhs)
+    DoubleType& add(double rhs)
     {
-        return lhs + rhs;
+        *value += rhs;
+        return *this;
     }
 
-    double subtract(double lhs, double rhs)
+    DoubleType& subtract(double rhs)
     {
-        return lhs - rhs;
+        *value -= rhs;
+        return *this;
     }
 
-    double multiply(double lhs, double rhs)
+    DoubleType& multiply(double rhs)
     {
-        return lhs * rhs;
+        *value *= rhs;
+        return *this;
     }
 
-    double divide(double lhs, double rhs)
+    DoubleType& divide(double rhs)
     {
         if(rhs == 0.0) 
             std::cout << "Attention: Dividing doubles by 0!" << "\n";
-        return lhs / rhs;
+        
+        *value /= rhs;
+        return *this;
     }
 };
 
@@ -201,29 +211,34 @@ struct IntType
 
     int* value = nullptr;
     
-    int add(int lhs, int rhs)
+    IntType& add(int rhs)
     {
-        return lhs + rhs;
+        *value += rhs;
+        return *this;
     }
 
-    int subtract(int lhs, int rhs)
+    IntType& subtract(int rhs)
     {
-        return lhs - rhs;
+        *value -= rhs;
+        return *this;
     }
 
-    int multiply(int lhs, int rhs)
+    IntType& multiply(int rhs)
     {
-        return lhs * rhs;
+        *value *= rhs;
+        return *this;
     }
 
-    int divide(int lhs, int rhs)
+    IntType& divide(int rhs)
     {
         if(rhs == 0) 
         {
             std::cout << "ERROR: Dividing ints by 0!" << "\n";
-            return 0;
+            *value = 0;
         }
-        return lhs / rhs;
+        
+        *value /= rhs;
+        return *this;
     }
 };
 
