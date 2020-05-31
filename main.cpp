@@ -294,7 +294,7 @@ int main()
     std::cout << "Initial value of it: " << *it.value << std::endl;
     // --------
     std::cout << "Use of function concatenation (mixed type arguments) " << std::endl;
-    std::cout << "New value of dt = (dt * it) / 5.0f + ft = " << *dt.multiply(*it.value).divide(5.0f).add(*ft.value).value << std::endl;
+    std::cout << "New value of dt = (dt * it) / 5.0f + ft = " << *dt.multiply(it).divide(5.0f).add(ft).value << std::endl;
 
     std::cout << "---------------------\n" << std::endl; 
     
