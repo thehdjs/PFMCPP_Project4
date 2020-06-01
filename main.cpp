@@ -24,16 +24,6 @@ struct HeapA
     }
     A* ptrToaA = nullptr;
 };
-
-
-
-
-
-
-
-
-
-
  /*
  1) Edit your 3 structs so that they own a heap-allocated primitive type without using smart pointers named 'value'
          IntType should own a heap-allocated int, for example.
@@ -163,43 +153,6 @@ struct FloatType
     }
 };
 
-struct DoubleType
-{
-    DoubleType(double* d) : value(d) {}
-    ~DoubleType()
-    {
-        delete value;
-    }
-
-    double* value = nullptr;
-
-    DoubleType& add(double rhs)
-    {
-        *value += rhs;
-        return *this;
-    }
-
-    DoubleType& subtract(double rhs)
-    {
-        *value -= rhs;
-        return *this;
-    }
-
-    DoubleType& multiply(double rhs)
-    {
-        *value *= rhs;
-        return *this;
-    }
-
-    DoubleType& divide(double rhs)
-    {
-        if(rhs == 0.0) 
-            std::cout << "Attention: Dividing doubles by 0!" << "\n";
-        
-        *value /= rhs;
-        return *this;
-    }
-};
 
 struct IntType
 {
@@ -233,13 +186,85 @@ struct IntType
     {
         if(rhs == 0) 
         {
-            std::cout << "ERROR: Dividing ints by 0!" << "\n";
+            std::cout << "ERROR: Dividing ints by 0!\n";
             return *this;
         }
         
         *value /= rhs;
         return *this;
     }
+
+    IntType& divide(const FloatType& ft)
+    {
+        if(*ft.value == 0.f) 
+        {
+            std::cout << "ERROR: Dividing by 0!\n";
+            return *this;
+        }
+        
+        *value /= *ft.value;
+        return *this;
+    }
+};
+
+struct DoubleType
+{
+    DoubleType(double* d) : value(d) {}
+    ~DoubleType()
+    {
+        delete value;
+    }
+
+    double* value = nullptr;
+
+    DoubleType& add(double rhs)
+    {
+        *value += rhs;
+        return *this;
+    }
+
+    DoubleType& add(const FloatType& ft)
+    {
+        *value += *ft.value;
+        return *this;
+    }
+
+    DoubleType& subtract(double rhs)
+    {
+        *value -= rhs;
+        return *this;
+    }
+
+    DoubleType& multiply(double rhs)
+    {
+        *value *= rhs;
+        return *this;
+    }
+
+    DoubleType& multiply(const IntType& it)
+    {
+        *value *= *it.value;
+        return *this;
+    }
+
+    DoubleType& divide(double rhs)
+    {
+        if(rhs == 0.0) 
+            std::cout << "Attention: Dividing doubles by 0!" << "\n";
+        
+        *value /= rhs;
+        return *this;
+    }
+
+    DoubleType& divide(float rhs)
+    {
+        if(rhs == 0.f) 
+            std::cout << "Attention: Dividing by 0!" << "\n";
+        
+        *value /= rhs;
+        return *this;
+    }
+
 };
 
 /*
@@ -303,7 +328,7 @@ int main()
     std::cout << "Intercept division by 0 " << std::endl;
     std::cout << "New value of it = it / 0 = " << *it.divide(0).value << std::endl;
     std::cout << "New value of ft = ft / 0 = " << *ft.divide(0).value << std::endl;
-    std::cout << "New value of dt = dt / 0 = " << *dt.divide(0).value << std::endl;
+    std::cout << "New value of dt = dt / 0 = " << *dt.divide(0.0).value << std::endl;
 
     std::cout << "---------------------\n" << std::endl; 
 
