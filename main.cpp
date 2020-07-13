@@ -133,19 +133,10 @@ struct FloatType
     ~FloatType() { delete value; }
 
     T& add(U rhs)       { *value += rhs; return *this; }
-    T& add(const FloatType& ft) { return add(*ft.value); }
-    T& add(const IntType& ft);
-    T& add(const DoubleType& ft);
 
     T& subtract(U rhs)  { *value -= rhs; return *this; }
-    T& subtract(const FloatType& ft) { return subtract(*ft.value); }
-    T& subtract(const IntType& ft);
-    T& subtract(const DoubleType& ft);
 
     T& multiply(U rhs)  { *value *= rhs; return *this; }
-    T& multiply(const FloatType& ft) { return multiply(*ft.value); }
-    T& multiply(const IntType& ft);
-    T& multiply(const DoubleType& ft);
 
     T& divide(U rhs)    
     { 
@@ -154,9 +145,6 @@ struct FloatType
         *value /= rhs; 
         return *this; 
     }
-    T& divide(const FloatType& ft) { return divide(*ft.value); }
-    T& divide(const IntType& ft);
-    T& divide(const DoubleType& ft);
 
     U* value = nullptr;
 };
@@ -170,19 +158,10 @@ struct DoubleType
     ~DoubleType() { delete value; }
 
     T& add(U rhs)       { *value += rhs; return *this; }
-    T& add(const FloatType& ft) { return add(*ft.value); }
-    T& add(const IntType& ft);
-    T& add(const DoubleType& ft) { return add(*ft.value); }
 
     T& subtract(U rhs)  { *value -= rhs; return *this; }
-    T& subtract(const FloatType& ft) { return subtract(*ft.value); }
-    T& subtract(const IntType& ft);
-    T& subtract(const DoubleType& ft) { return subtract(*ft.value); }
 
     T& multiply(U rhs)  { *value *= rhs; return *this; }
-    T& multiply(const FloatType& ft) { return multiply(*ft.value); }
-    T& multiply(const IntType& ft);
-    T& multiply(const DoubleType& ft) { return multiply(*ft.value); }
 
     T& divide(U rhs)    
     { 
@@ -191,9 +170,6 @@ struct DoubleType
         *value /= rhs; 
         return *this; 
     }
-    T& divide(const FloatType& ft) { return divide(*ft.value); }
-    T& divide(const IntType& ft);
-    T& divide(const DoubleType& ft) { return divide(*ft.value); }
 
     U* value = nullptr;
 };
@@ -207,19 +183,10 @@ struct IntType
     ~IntType() { delete value; }
 
     T& add(U rhs)       { *value += rhs; return *this; }
-    T& add(const FloatType& ft) { return add(*ft.value); }
-    T& add(const IntType& ft) { return add(*ft.value); }
-    T& add(const DoubleType& ft) { return add(*ft.value); }
 
     T& subtract(U rhs)  { *value -= rhs; return *this; }
-    T& subtract(const FloatType& ft) { return subtract(*ft.value); }
-    T& subtract(const IntType& ft) { return subtract(*ft.value); }
-    T& subtract(const DoubleType& ft) { return subtract(*ft.value); }
 
     T& multiply(U rhs)  { *value *= rhs; return *this; }
-    T& multiply(const FloatType& ft) { return multiply(*ft.value); }
-    T& multiply(const IntType& ft) { return multiply(*ft.value); }
-    T& multiply(const DoubleType& ft) { return multiply(*ft.value); }
 
     T& divide(U rhs)    
     { 
@@ -233,29 +200,10 @@ struct IntType
         }
         return *this; 
     }
-    T& divide(const FloatType& ft) { return divide(*ft.value); }
-    T& divide(const IntType& ft) { return divide(*ft.value); }
-    T& divide(const DoubleType& ft) { return divide(*ft.value); }
 
     U* value = nullptr;
 };
 
-FloatType& FloatType::add(const IntType& ft) { return add(*ft.value); }
-FloatType& FloatType::add(const DoubleType& ft) { return add(*ft.value); }
-
-FloatType& FloatType::subtract(const IntType& ft) { return subtract(*ft.value); }
-FloatType& FloatType::subtract(const DoubleType& ft) { return subtract(*ft.value); }
-
-FloatType& FloatType::multiply(const IntType& ft) { return multiply(*ft.value); }
-FloatType& FloatType::multiply(const DoubleType& ft) { return multiply(*ft.value); }
-
-FloatType& FloatType::divide(const IntType& ft) { return divide(*ft.value); }
-FloatType& FloatType::divide(const DoubleType& ft) { return divide(*ft.value); }
-
-DoubleType& DoubleType::add(const IntType& ft) { return add(*ft.value); }
-DoubleType& DoubleType::subtract(const IntType& ft) { return subtract(*ft.value); }
-DoubleType& DoubleType::multiply(const IntType& ft) { return multiply(*ft.value); }
-DoubleType& DoubleType::divide(const IntType& ft) { return divide(*ft.value); }
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
 
