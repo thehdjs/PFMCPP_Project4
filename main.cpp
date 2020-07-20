@@ -132,114 +132,87 @@ struct FloatType
     FloatType(U u) : value( new U(u) ) { } 
     ~FloatType() { delete value; }
 
-    
-    T& add(U rhs);
-    T& subtract(U rhs);
-    T& multiply(U rhs);
-    T& divide(U rhs);
-
     operator float() {return *value;}
 
+    T& add(U rhs)       { *value += rhs; return *this; }
+
+    T& subtract(U rhs)  { *value -= rhs; return *this; }
+
+    T& multiply(U rhs)  { *value *= rhs; return *this; }
+
+    T& divide(U rhs)    
+    { 
+        if( rhs == 0.f )
+            std::cout << "warning, floating point division by zero\n";
+        *value /= rhs; 
+        return *this;
+    } 
 private:
    U* value = nullptr;
 };
 
-using T = FloatType;
-using U = float;
-
-T& T::add(U rhs)       { *value += rhs; return *this; }
-
-T& T::subtract(U rhs)  { *value -= rhs; return *this; }
-
-T& T::multiply(U rhs)  { *value *= rhs; return *this; }
-
-T& T::divide(U rhs)    
-{ 
-    if( rhs == 0.f )
-        std::cout << "warning, floating point division by zero\n";
-    *value /= rhs; 
-    return *this;
-} 
-
 struct DoubleType
 {   
-    using X = DoubleType;
-    using Y = double;
+    using T = DoubleType;
+    using U = double;
 
-    DoubleType(Y u) : value( new Y(u) ) { } 
+    DoubleType(U u) : value( new U(u) ) { } 
     ~DoubleType() { delete value; }
 
-    X& add(Y rhs);
-    X& subtract(Y rhs);
-    X& multiply(Y rhs);
-    X& divide(Y rhs);
+    T& add(U rhs)       { *value += rhs; return *this; }
+
+    T& subtract(U rhs)  { *value -= rhs; return *this; }
+
+    T& multiply(U rhs)  { *value *= rhs; return *this; }
+
+    T& divide(U rhs)    
+    { 
+        if( rhs == 0.0 )
+        std::cout << "warning, double point division by zero\n";
+        *value /= rhs; 
+        return *this;
+    } 
+
 
 
     operator double() {return *value;}
 
 private:
-    Y* value = nullptr;
+    U* value = nullptr;
 };
-
-using X = DoubleType;
-using Y = double;
-
-X& X::add(Y rhs)       { *value += rhs; return *this; }
-
-X& X::subtract(Y rhs)  { *value -= rhs; return *this; }
-
-X& X::multiply(Y rhs)  { *value *= rhs; return *this; }
-
-X& X::divide(Y rhs)    
-{ 
-    if( rhs == 0.0 )
-    std::cout << "warning, double point division by zero\n";
-    *value /= rhs; 
-    return *this;
-} 
 
 struct IntType
 {   
-    using V = IntType;
-    using W = int;
+    using T = IntType;
+    using U = int;
 
-    IntType(W u) : value( new W(u) ) { } 
+    IntType(U u) : value( new U(u) ) { } 
     ~IntType() { delete value; }
 
-    V& add(W rhs);
-    V& subtract(W rhs);
-    V& multiply(W rhs);
-    V& divide(W rhs);
+    T& add(U rhs)       { *value += rhs; return *this; }
 
-    operator int() {return *value;}
+    T& subtract(U rhs)  { *value -= rhs; return *this; }
+
+    T& multiply(U rhs)  { *value *= rhs; return *this; }
+
+    T& divide(U rhs)    
+    { 
+            if( rhs == 0 )
+            {
+                std::cout << "error, integer division by zero will crash program\n";
+            }
+            else
+            {
+                *value /= rhs; 
+            }
+            return *this; 
+        }
+
+        operator int() {return *value;}
 
 private:
-    W* value = nullptr;
+    U* value = nullptr;
 };
-
-using V = IntType;
-using W = int;
-
-V& V::add(W rhs)       { *value += rhs; return *this; }
-
-V& V::subtract(W rhs)  { *value -= rhs; return *this; }
-
-V& V::multiply(W rhs)  { *value *= rhs; return *this; }
-
-V& V::divide(W rhs)    
-   { 
-        if( rhs == 0 )
-        {
-            std::cout << "error, integer division by zero will crash program\n";
-        }
-        else
-        {
-            *value /= rhs; 
-        }
-        return *this; 
-    }
-
-
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
 
