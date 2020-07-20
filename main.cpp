@@ -139,7 +139,8 @@ struct FloatType
     T& divide(U rhs);
 
     operator float() {return *value;}
-   private:
+
+private:
    U* value = nullptr;
 };
 
@@ -175,7 +176,8 @@ struct DoubleType
 
 
     operator double() {return *value;}
-  private:
+
+private:
     Y* value = nullptr;
 };
 
@@ -211,7 +213,7 @@ struct IntType
 
     operator int() {return *value;}
 
-  private:
+private:
     W* value = nullptr;
 };
 
