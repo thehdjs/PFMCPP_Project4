@@ -143,7 +143,7 @@ struct FloatType
     T& divide(U rhs)    
     { 
         if( rhs == 0.f )
-            std::cout << "warning, floating point division by zero\n";
+            std::cout << "warning: floating point division by zero!\n";
         *value /= rhs; 
         return *this;
     } 
@@ -168,7 +168,7 @@ struct DoubleType
     T& divide(U rhs)    
     { 
         if( rhs == 0.0 )
-        std::cout << "warning, double point division by zero\n";
+        std::cout << "warning: floating point division by zero!\n";
         *value /= rhs; 
         return *this;
     } 
@@ -199,7 +199,7 @@ struct IntType
     { 
         if( rhs == 0 )
         {
-            std::cout << "error, integer division by zero will crash program\n";
+            std::cout << "error: integer division by zero is an error and will crash the program!\n";
         }
         else
         {
