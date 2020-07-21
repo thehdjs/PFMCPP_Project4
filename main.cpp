@@ -197,18 +197,18 @@ struct IntType
 
     T& divide(U rhs)    
     { 
-            if( rhs == 0 )
-            {
-                std::cout << "error, integer division by zero will crash program\n";
-            }
-            else
-            {
-                *value /= rhs; 
-            }
-            return *this; 
+        if( rhs == 0 )
+        {
+            std::cout << "error, integer division by zero will crash program\n";
         }
+        else
+        {
+            *value /= rhs; 
+        }
+        return *this; 
+    }
 
-        operator int() {return *value;}
+    operator int() {return *value;}
 
 private:
     U* value = nullptr;
